@@ -125,6 +125,7 @@ body{
   flex-direction: row;
   justify-content: space-evenly;
   margin: auto;
+  padding: 70px;
 }
 
 .left_content{
