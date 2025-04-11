@@ -1,0 +1,308 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-BlackItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+  }
+
+  :root {
+    --cor-azul-escuro: #072e5a;
+    --cor-ciano: #00adcd;
+    --cor-branco: #ffffff;
+    --cor-preto: #000000;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-branco);
+    color: var(--cor-preto);
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
+    background-color: var(--cor-branco);
+    color: var(--cor-branco);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+  }
+  .logo img {
+    height: 100px;
+  }
+  .nav-links {
+    color: var(--cor-azul-escuro);
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  .nav-links li a {
+    color: var(--cor-azul-escuro);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+  .nav-links li a:hover {
+    opacity: 0.7;
+  }
+  .lang-switch img {
+    width: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .line_nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    border-bottom: 2px #00adcd solid;
+    margin: 0 auto;
+    width: 100%;
+    height: 1px;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    color: #0b2b57;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-top: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contato {
+    text-align: center;
+    color: #072e5a;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .contato-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contato-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px; 
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .col {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .col p {
+    margin: 1px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .col i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .email-group {
+    position: relative;
+  }
+  
+  .secondary-email {
+    padding-left: 30px; 
+  }
+  
+  .col p i.fa-envelope {
+    margin-right: 10px;
+    width: 20px;
+  }
+
+  .contato-endereco {
+    text-align: center;
+    margin-right: 230px;
+    margin-top: 20px;
+  }
+  
+  .contato-endereco p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .contato-endereco i {
+    margin-right: 10px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover, a:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .footer-logo {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .collapsible_line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    border-bottom: 2px #072e5a solid;
+    margin: 0 auto;
+    width: 100%;
+    height: 2px;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+    color: #00bcd4;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+  
+  .footer-logo span {
+    color: #0b2b57;
+    font-weight: 400;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .contato-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .col {
+      align-items: center;
+    }
+  
+    .col .email-group,
+    .contato-endereco {
+      align-items: center;
+      text-align: center;
+    }
+  }
+  
