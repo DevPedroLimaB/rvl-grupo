@@ -193,6 +193,7 @@ a:hover {
 .contato-grid {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 50px; 
   margin-bottom: 20px;
   width: 100%;
@@ -231,7 +232,7 @@ a:hover {
 
 .contato-endereco {
   text-align: center;
-  margin-right: 230px;
+
   margin-top: 20px;
 }
 

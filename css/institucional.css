@@ -161,16 +161,14 @@ nav::after {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 50px;
+    gap: 30px;
     align-items: center;
-    padding-right: 60px;
 }
 .nav-links li a {
     font-weight: 400;
     font-size: 30px;
     color: var(--cor-azul-escuro);
     padding-bottom: 20px;
-    margin-right: 20px;
 }
 .nav-links li a.active {
     color: var(--cor-ciano);
@@ -568,6 +566,7 @@ nav::after {
   .contato-grid {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 50px; 
     margin-bottom: 20px;
     width: 100%;
@@ -606,7 +605,6 @@ nav::after {
 
   .contato-endereco {
     text-align: center;
-    margin-right: 230px;
     margin-top: 20px;
   }
   
@@ -675,3 +673,56 @@ nav::after {
         font-size: 1.8rem;
     }
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: var(--cor-ciano);
+  }
+  
+  .nav_cont{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+  }
+  
+  .nav_left{
+    display: flex;
+    margin-bottom: 24px
+  }
+  
+  .logo img {
+    height: 150px;
+  }
+  
+  .division_line{
+    display: flex;
+    width: 75%;
+    background-color: #00adcd;
+    margin: auto;
+    margin-bottom: 24px; 
+    height: 3px;
+  }
+  
+  .nav-links{
+    display: flex;
+    text-align: center;
+    
+    & li a{
+      font-weight: 400;
+      font-size: 30px;
+      color: var(--cor-azul-escuro);
+    }
+  }
+  
+  .nav-links li a.active {
+    color: var(--cor-ciano);
+    position: relative;
+  }
+  
