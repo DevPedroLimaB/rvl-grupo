@@ -1,6 +1,6 @@
 // === Carrossel da seção "valores" ===
-const trackValores = document.querySelector('.carrossel-container .carrossel-item');
-const cardsValores = Array.from(document.querySelectorAll('.carrossel-track .carrossel-item'));
+const trackValores = document.querySelector('.carrossel-wrapper');
+const cardsValores = Array.from(document.querySelectorAll('.carrossel-track .valor-card'));
 const btnPrevValores = document.querySelector('.seta.esquerda');
 const btnNextValores = document.querySelector('.seta.direita');
 

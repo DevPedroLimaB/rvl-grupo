@@ -199,7 +199,7 @@ nav::after {
     background-position: center;
     color: var(--cor-branco);
     text-align: center;
-    padding: 120px 20px;
+    padding: 0 20px;
 }
 
 .institucional-banner::before {
@@ -230,28 +230,7 @@ nav::after {
     position: relative;
 }
 
-.banner-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-}
 
-.banner-logo {
-    width: 500px; /* Aumentado */
-    max-width: 90%;
-    margin-bottom: 5px; /* Reduzi a margem inferior */
-    margin-top: -100px;
-}
-.banner-content .slogan {
-    font-size: 1.5rem;
-    margin: 5px 0 10px;
-    margin-top: -70px;
-}
-.banner-content p {
-    font-size: 1.25rem;
-    margin: 5px 0;
-}
 .logo img {
     height: 200px;
 }
@@ -392,18 +371,18 @@ nav::after {
 }
 
 .parceiro-logo {
-    height: 700px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -200px;
-    margin-top: -200px;
 }
 
 .parceiro-logo img {
     max-height: 100%;
     max-width: 100%;
-
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
 }
 
 .parceiro-logo img:hover {
