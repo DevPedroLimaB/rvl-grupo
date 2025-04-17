@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #002b5c;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+  }
+  
+  .text-section {
+    max-width: 40%;
+  }
+  
+  .text-section h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+  }
+  
+  .text-section p {
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+  
+  .btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: #002b5c;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Wrapper para centralizar o carrossel */
+  .carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    perspective: 1000px;
+  }
+  
+  .carousel {
+    position: relative;
+    width: 400px;
+    height: 220px;
+  }
+  
+  /* Estilo base dos slides */
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: #002b5c;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+    transition: all 0.8s ease-in-out;
+    z-index: 0;
+  }
+  
+  /* Slide centralizado */
+  .slide.active {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    z-index: 3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Slide esquerda */
+  .slide.prev {
+    opacity: 0.5;
+    transform: translateX(-120%) scale(0.9);
+    z-index: 2;
+  }
+  
+  /* Slide direita */
+  .slide.next {
+    opacity: 0.5;
+    transform: translateX(20%) scale(0.9);
+    z-index: 2;
+  }
+  
+  /* subtÃ­tulo do card */
+  .slide .sub {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+  }

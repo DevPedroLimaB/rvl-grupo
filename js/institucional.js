@@ -1,109 +1,93 @@
-// === Carrossel da seção "valores" ===
-const trackValores = document.querySelector('.carrossel-wrapper');
-const cardsValores = Array.from(document.querySelectorAll('.carrossel-track .valor-card'));
-const btnPrevValores = document.querySelector('.seta.esquerda');
-const btnNextValores = document.querySelector('.seta.direita');
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Página carregada e script.js ativo (institucional)');
 
-let indexValores = 0;
+  // === Tradução ===
+  function setLanguage(lang) {
+    document.querySelectorAll('[data-pt]').forEach(el => {
+      el.innerText = el.getAttribute(`data-${lang}`);
+    });
+  }
 
-function updateCarouselValores() {
-  const visibleCount = 3;
-  const cardWidth = cardsValores[0].offsetWidth + 30; // margem ou gap entre cards
-  const maxIndex = cardsValores.length - visibleCount;
+  window.setLanguage = setLanguage;
 
-  // Garante que o índice fique dentro do intervalo
-  if (indexValores < 0) indexValores = maxIndex;
-  if (indexValores > maxIndex) indexValores = 0;
+  // Aplica o idioma salvo
+  const savedLang = localStorage.getItem('lang') || 'pt';
+  setLanguage(savedLang);
 
-  const offset = indexValores * cardWidth;
-  trackValores.style.transition = "transform 0.5s ease"; // Adicionando uma transição suave
-  trackValores.style.transform = `translateX(-${offset}px)`;
+  // === Carrossel da seção "valores" ===
+  const trackValores = document.querySelector('.carrossel-wrapper');
+  const cardsValores = Array.from(document.querySelectorAll('.carrossel-track .valor-card'));
+  const btnPrevValores = document.querySelector('.seta.esquerda');
+  const btnNextValores = document.querySelector('.seta.direita');
 
-  // Atualiza os cards com base no índice
-  cardsValores.forEach((card, i) => {
-    card.classList.remove('central');
-    card.style.opacity = '0.5';
-    card.style.transform = 'scale(0.9)';
-    card.style.zIndex = '1';
+  let indexValores = 0;
+
+  function updateCarouselValores() {
+    const visibleCount = 3;
+    const cardWidth = cardsValores[0].offsetWidth + 30;
+    const maxIndex = cardsValores.length - visibleCount;
+
+    if (indexValores < 0) indexValores = maxIndex;
+    if (indexValores > maxIndex) indexValores = 0;
+
+    const offset = indexValores * cardWidth;
+    trackValores.style.transition = "transform 0.5s ease";
+    trackValores.style.transform = `translateX(-${offset}px)`;
+
+    cardsValores.forEach((card, i) => {
+      card.classList.remove('central');
+      card.style.opacity = '0.5';
+      card.style.transform = 'scale(0.9)';
+      card.style.zIndex = '1';
+    });
+
+    const centralIndex = indexValores + Math.floor(visibleCount / 2);
+    if (cardsValores[centralIndex]) {
+      cardsValores[centralIndex].classList.add('central');
+      cardsValores[centralIndex].style.opacity = '1';
+      cardsValores[centralIndex].style.transform = 'scale(1.05)';
+      cardsValores[centralIndex].style.zIndex = '2';
+      cardsValores[centralIndex].style.backgroundColor = '#00adcd';
+    }
+  }
+
+  btnNextValores?.addEventListener('click', () => {
+    indexValores++;
+    updateCarouselValores();
   });
 
-  // Calcula o card central considerando o número de cards visíveis
-  const centralIndex = indexValores + Math.floor(visibleCount / 2);
-  if (cardsValores[centralIndex]) {
-    cardsValores[centralIndex].classList.add('central');
-    cardsValores[centralIndex].style.opacity = '1';
-    cardsValores[centralIndex].style.transform = 'scale(1.05)';
-    cardsValores[centralIndex].style.zIndex = '2';
-    cardsValores[centralIndex].style.backgroundColor = '#00adcd'; // Mudando a cor do card central
-  }
-}
-
-btnNextValores.addEventListener('click', () => {
-  indexValores++;
-  updateCarouselValores();
-});
-
-btnPrevValores.addEventListener('click', () => {
-  indexValores--;
-  updateCarouselValores();
-});
-
-
-// === Carrossel da seção "certificados" ===
-const trackCertificados = document.querySelector('.carrossel-track-certificados');
-const cardsCertificados = Array.from(document.querySelectorAll('.certificado-card'));
-const btnPrevCert = document.querySelector('.seta-certificada.esquerda');
-const btnNextCert = document.querySelector('.seta-certificada.direita');
-
-let indexCert = 0;
-
-function updateCarouselCertificados() {
-  const visibleCount = 3;
-  const cardWidth = cardsCertificados[0].offsetWidth + 30;
-  const maxIndex = cardsCertificados.length - visibleCount;
-
-  // Garante que o índice fique dentro do intervalo
-  if (indexCert < 0) indexCert = maxIndex;
-  if (indexCert > maxIndex) indexCert = 0;
-
-  const offset = indexCert * cardWidth;
-  trackCertificados.style.transition = "transform 0.5s ease"; // Adicionando uma transição suave
-  trackCertificados.style.transform = `translateX(-${offset}px)`;
-
-  cardsCertificados.forEach((card, i) => {
-    card.classList.remove('active');
-    card.style.opacity = '0.5';
-    card.style.transform = 'scale(0.9)';
-    card.style.zIndex = '1';
+  btnPrevValores?.addEventListener('click', () => {
+    indexValores--;
+    updateCarouselValores();
   });
 
-  const central = indexCert + 1;
-  if (cardsCertificados[central]) {
-    cardsCertificados[central].classList.add('active');
-    cardsCertificados[central].style.opacity = '1';
-    cardsCertificados[central].style.transform = 'scale(1.1)';
-    cardsCertificados[central].style.zIndex = '2';
+  window.addEventListener('load', () => {
+    updateCarouselValores();
+  });
+
+  // === Carrossel da seção "certificados" ===
+  const slides = document.querySelectorAll('.slide');
+  let currentIndex = 0;
+
+  function updateSlides() {
+    slides.forEach((slide, index) => {
+      slide.classList.remove('active', 'prev', 'next');
+
+      if (index === currentIndex) {
+        slide.classList.add('active');
+      } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
+        slide.classList.add('prev');
+      } else if (index === (currentIndex + 1) % slides.length) {
+        slide.classList.add('next');
+      }
+    });
   }
-}
 
-btnNextCert.addEventListener('click', () => {
-  indexCert++;
-  updateCarouselCertificados();
-});
+  function showNextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlides();
+  }
 
-btnPrevCert.addEventListener('click', () => {
-  indexCert--;
-  updateCarouselCertificados();
-});
-
-// Atualização a cada 7 segundos para o carrossel de certificados
-setInterval(() => {
-  indexCert++;
-  updateCarouselCertificados();
-}, 7000);
-
-// Iniciar ao carregar a página
-window.addEventListener('load', () => {
-  updateCarouselValores();
-  updateCarouselCertificados();
+  updateSlides();
+  setInterval(showNextSlide, 7000); // a cada 7s
 });
