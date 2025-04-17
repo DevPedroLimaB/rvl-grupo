@@ -5,10 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RVL Grupo</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <!-- Navbar -->
+
+  <header>
+    <div class="nav_cont">
+        <div class="logo">
+            <a href="#"><img src="../img/logo-azul.png" alt="logo"></a>
+        </div>
+        <div class="nav_left">
+            <ul class="nav-links">
+                <li><a href="/index.html" data-pt="Home" data-en="Home" class="active">Home</a></li>
+                <li><a href="/institucional.html" data-pt="Institucional" data-en="About">Institucional</a></li>
+                <li><a href="/services_page/index.html" data-pt="Soluções" data-en="Solutions">Soluções</a></li>
+                <li><a href="/contato.html" data-pt="Contato" data-en="Contact">Contato</a></li>
+                <li><div class="lang-switch">
+                  <img src="/img/br.jpg" alt="Português" onclick="setLanguage('pt')">
+                  <img src="/img/us.png" alt="English" onclick="setLanguage('en')">
+                </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="width: 100%;">
+        <span class="division_line"></span>
+    </div>
+</header>
+
+
+
+  <!-- Navbar         PODE APAGAR SE QUISER
   <nav>
     <div class="logo">
       <img src="/img/logo-azul.png" alt="RVL Grupo">
@@ -24,6 +52,7 @@
       <img src="/img/us.png" alt="English" onclick="setLanguage('en')">
     </div>
   </nav>
+-->
 
   <!-- Carrossel principal -->
   <section class="carousel" id="main-carousel">
@@ -111,6 +140,32 @@
     </a>
   </section>
   
+
+  
+  <footer>
+    <div class="footerdiv">
+        <div class="footer_logo">
+            <a href="#"><img src="/img/logo-azul.png " alt="logo"></a>
+        </div>
+    </div>
+    
+    <div class="contato-grid">
+      <div class="contato-endereco">
+          <p><i class="fas fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/NzEtuZ7HuWDCVkZZ6"> Av. Joca
+                  Brandão, 111<br>Fazenda, Itajaí - SC<br>88301-440</a></p>
+          <br>
+      </div>
+      <div class="col contato-info">
+          <p><i class="fas fa-envelope"></i> contato@rvlgrupo.com.br</p>
+          <p class="secondary-email">comercial@rvlgrupo.com.br</p>
+      </div>
+      <div class="col numeros-info">
+          <p><i class="fas fa-phone"></i> (47)991181861</p>
+          <p><i class="fas fa-phone"></i> (47)997561861</p>
+          <p><i class="fab fa-whatsapp"></i> (47)991362346</p>
+      </div>
+  </div>
+</footer>
   
 
   <script src="/js/script.js"></script>
