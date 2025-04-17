@@ -338,118 +338,150 @@ a:hover {
   margin-bottom: 40px;
 }
 .solutions-carousel-wrapper {
-  position: relative;
-  max-width: 960px;
-  width: 100%;
-  margin: 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* importante pro efeito de rolagem funcionar */
-}
-
-.solutions-carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: fit-content;
-}
-
-.solution {
-  flex: 0 0 300px;
-  height: 220px;
-  margin: 0 10px;
-  background-color: var(--cor-azul-escuro);
-  color: var(--cor-branco);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.95);
-  transition: all 0.4s ease;
-}
-
-.solution.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.solution.active {
-  background-color: var(--cor-ciano);
-  transform: scale(1.05);
-  border-radius: 8px !important;
-  overflow: hidden;
-}
-
-.solutions .btn.dark {
-  margin-top: 40px;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 36px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--cor-azul-escuro);
-  z-index: 10;
-}
-
-.arrow.left {
-  left: -40px;
-}
-
-.arrow.right {
-  right: -40px;
-}
-
-/* === Responsivo para telas menores === */
+    position: relative;
+    max-width: 960px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+  
+  .solutions-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .solution {
+    flex: 0 0 300px;
+    height: 220px;
+    margin: 0 10px;
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-branco);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+    transition: all 0.4s ease;
+  }
+  
+  .solution.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .solution.active {
+    background-color: var(--cor-ciano);
+    transform: scale(1.05);
+    border-radius: 8px !important; /* precisei forçar pq ele n estava querendo arrendondar as pontas */
+    overflow: hidden;
+  }
+  
+  .solutions .btn.dark {
+    margin-top: 40px;
+  }
+  
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cor-azul-escuro);
+    z-index: 10;
+  }
+  
+  .arrow.left {
+    left: -40px;
+  }
+  
+  .arrow.right {
+    right: -40px;
+  }
+/* Responsivo para telas menores */
 @media (max-width: 768px) {
   .solution {
-    flex: 0 0 260px;
+    flex: 0 0 240px;
     height: 180px;
     font-size: 1rem;
-    margin: 0 6px;
+  }
+
+  .solutions-carousel-wrapper {
+    padding: 0 40px;
   }
 
   .arrow {
     font-size: 28px;
   }
+}
 
-  .arrow.left {
-    left: -20px;
+/* Responsivo para telas menores */
+@media (max-width: 768px) {
+  .solution {
+    flex: 0 0 240px;
+    height: 180px;
+    font-size: 1rem;
   }
 
-  .arrow.right {
-    right: -20px;
+  .solutions-carousel-wrapper {
+    padding: 0 40px;
+  }
+
+  .arrow {
+    font-size: 28px;
   }
 }
 
 @media (max-width: 480px) {
   .solution {
-    flex: 0 0 220px;
+    flex: 0 0 200px;
     height: 160px;
     font-size: 0.95rem;
-    margin: 0 4px;
   }
 
   .arrow {
     font-size: 24px;
   }
+}
 
-  .arrow.left {
-    left: -12px;
+@media (max-width: 480px) {
+  .solution {
+    flex: 0 0 200px;
+    height: 160px;
+    font-size: 0.95rem;
   }
 
-  .arrow.right {
-    right: -12px;
+  .arrow {
+    font-size: 24px;
   }
 }
+
+
+/* Responsivo para telas menores */
+@media (max-width: 768px) {
+  .solution {
+    flex: 0 0 240px;
+    height: 180px;
+    font-size: 1rem;
+  }
+
+  .solutions-carousel-wrapper {
+    padding: 0 40px;
+  }
+
+  .arrow {
+    font-size: 28px;
+  }
+}
+
 @media (max-width: 480px) {
   .solution {
     flex: 0 0 200px;
