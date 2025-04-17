@@ -340,16 +340,18 @@ a:hover {
 .solutions-carousel-wrapper {
   position: relative;
   max-width: 960px;
+  width: 100%;
   margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden; /* importante pro efeito de rolagem funcionar */
 }
 
 .solutions-carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  width: fit-content;
 }
 
 .solution {
@@ -378,14 +380,13 @@ a:hover {
 .solution.active {
   background-color: var(--cor-ciano);
   transform: scale(1.05);
-  border-radius: 8px !important; /* precisei forçar pq ele n estava querendo arrendondar as pontas */
+  border-radius: 8px !important;
   overflow: hidden;
 }
 
 .solutions .btn.dark {
   margin-top: 40px;
 }
-
 
 .arrow {
   position: absolute;
@@ -406,53 +407,49 @@ a:hover {
 .arrow.right {
   right: -40px;
 }
-/* Responsivo para telas menores */
+
+/* === Responsivo para telas menores === */
 @media (max-width: 768px) {
   .solution {
-    flex: 0 0 240px;
+    flex: 0 0 260px;
     height: 180px;
     font-size: 1rem;
-  }
-
-  .solutions-carousel-wrapper {
-    padding: 0 40px;
+    margin: 0 6px;
   }
 
   .arrow {
     font-size: 28px;
+  }
+
+  .arrow.left {
+    left: -20px;
+  }
+
+  .arrow.right {
+    right: -20px;
   }
 }
 
 @media (max-width: 480px) {
   .solution {
-    flex: 0 0 200px;
+    flex: 0 0 220px;
     height: 160px;
     font-size: 0.95rem;
+    margin: 0 4px;
   }
 
   .arrow {
     font-size: 24px;
   }
-}
 
-
-/* Responsivo para telas menores */
-@media (max-width: 768px) {
-  .solution {
-    flex: 0 0 240px;
-    height: 180px;
-    font-size: 1rem;
+  .arrow.left {
+    left: -12px;
   }
 
-  .solutions-carousel-wrapper {
-    padding: 0 40px;
-  }
-
-  .arrow {
-    font-size: 28px;
+  .arrow.right {
+    right: -12px;
   }
 }
-
 @media (max-width: 480px) {
   .solution {
     flex: 0 0 200px;
