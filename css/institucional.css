@@ -338,6 +338,7 @@ nav::after {
     padding: 4rem 2rem;
     background: #fff;
     color: #072e5a;
+
   }
 
   .titulo {
@@ -347,75 +348,88 @@ nav::after {
   }
 
   .subtitulo {
-    font-size: 1rem;
+    font-size: 1.2rem;
     max-width: 800px;
     margin: 0 auto 3rem;
-    color: #4a4a4a;
+    color: var(--cor-azul-escuro);
   }
 
-  .carrossel-container {
+  .solutions-carousel-wrapper {
     position: relative;
+    max-width: 960px;
+    margin: 10px auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
   }
-
-  .carrossel-wrapper {
+  
+  .solutions-carousel {
     display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 1rem;
-    max-width: 1000px;
-    scroll-snap-type: x mandatory;  /* Alinha os itens ao rolar */
-}
-
-.carrossel-item {
-    background-color: #072e5a;
-    color: white;
-    border-radius: 24px;
-    padding: 2rem;
-    min-width: 280px;
-    max-width: 280px;
-    flex: 0 0 auto;
-    transition: all 0.5s ease;
-    opacity: 0.6;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .solution {
+    flex: 0 0 300px;
+    height: 220px;
+    margin: 0 10px;
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-branco);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
     transform: scale(0.95);
-    scroll-snap-align: start;  /* Define o alinhamento dos itens */
-}
-
-.carrossel-item.destaque {
-    background-color: #00adcd;
-    color: #000;
+    transition: all 0.4s ease;
+  }
+  
+  .solution.visible {
     opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .solution.active {
+    background-color: var(--cor-ciano);
     transform: scale(1.05);
-    font-weight: 700;
-}
-
-
-  .seta {
+    border-radius: 8px !important; /* precisei forçar pq ele n estava querendo arrendondar as pontas */
+    overflow: hidden;
+  }
+  
+  .solutions .btn.dark {
+    margin-top: 40px;
+  }
+  
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
     background: none;
     border: none;
-    font-size: 2rem;
     cursor: pointer;
-    color: #072e5a;
-    padding: 0 1rem;
-    z-index: 2;
-    transition: color 0.3s ease;
+    color: var(--cor-azul-escuro);
+    z-index: 10;
   }
-
-  .seta:hover {
-    color: #00adcd;
+  
+  .arrow.left {
+    left: -40px;
   }
-
-  /* Oculta a barra de scroll */
-  .carrossel-wrapper::-webkit-scrollbar {
-    display: none;
+  
+  .arrow.right {
+    right: -40px;
   }
+  
+  
 
 .parceiros {
     padding: 80px 10%;
     text-align: center;
-    margin-top: -100px;
+    margin-top: -50px;
 }
 
 .parceiros h2 {
@@ -427,7 +441,7 @@ nav::after {
 .parceiros p {
     color: var(--cor-azul-escuro);
     margin-bottom: 50px;
-    font-size: 28px;
+    font-size: 2x;
 }
 
 .parceiros-grid {
@@ -443,8 +457,8 @@ nav::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -305px;
-    margin-top: -270px;
+    margin-bottom: -300px;
+    margin-top: -250px;
 }
 
 .parceiro-logo img {
@@ -478,13 +492,13 @@ nav::after {
   }
   
   .certificados-texto h2 {
-    font-size: 2.5rem;
+    font-size: 3.3rem;
     color: white;
     margin-bottom: 20px;
   }
   
   .certificados-texto p {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: white;
     margin-bottom: 30px;
     max-width: 500px;

@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentSlide);
   }, 13000);
 
-  // === Carrossel de Soluções ===
+   // === Novo Carrossel da seção "valores" ===
+     // === Novo Carrossel da seção "valores" (formato solutions-carousel) ===
   const carousel = document.querySelector('.solutions-carousel');
   const solutionItems = document.querySelectorAll('.solution');
   const leftArrow = document.querySelector('.arrow.left');
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
 
   function updateCarousel() {
-    const itemWidth = solutionItems[0].offsetWidth + 20; // Ajuste da largura do item
+    const itemWidth = solutionItems[0].offsetWidth + 20;
     const offset = currentIndex * itemWidth;
 
     carousel.style.transform = `translateX(-${offset}px)`;
@@ -66,12 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
       item.style.backgroundColor = 'var(--cor-azul-escuro)';
       item.style.transform = 'scale(0.95)';
 
-      // Mostrar só os 3 visíveis
       if (i >= currentIndex && i < currentIndex + visibleCount) {
         item.classList.add('visible');
       }
 
-      // Item central
       if (i === currentIndex + 1) {
         item.classList.add('active');
         item.style.backgroundColor = 'var(--cor-ciano)';
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 7000);
 
   updateCarousel();
-
   // === Tema escuro ===
   const toggleButton = document.getElementById('toggleTheme');
   if (toggleButton) {
