@@ -520,7 +520,7 @@ padding-top: 5px;
   }
 }
 /* Responsivo para telas menores */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .solution {
     flex: 0 0 240px;
     height: 180px;
@@ -537,29 +537,3 @@ padding-top: 5px;
 }
 
 /* Responsivo para telas menores */
-
-
-@media (max-width: 480px) {
-  .solutions-carousel-wrapper {
-    padding: 0 10px; /* adiciona um pouco de respiro lateral */
-  }
-
-  .solution {
-    flex: 0 0 85%; /* menor que 100% para não colar nas bordas */
-    height: 160px;
-    font-size: 0.95rem;
-    margin: 0 6px;
-  }
-
-  .arrow {
-    font-size: 24px;
-  }
-
-  .arrow.left {
-    left: -12px;
-  }
-
-  .arrow.right {
-    right: -12px;
-  }
-}
