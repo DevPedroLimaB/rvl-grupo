@@ -49,60 +49,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
    // === Novo Carrossel da seção "valores" ===
      // === Novo Carrossel da seção "valores" (formato solutions-carousel) ===
-  const carousel = document.querySelector('.solutions-carousel');
-  const solutionItems = document.querySelectorAll('.solution');
-  const leftArrow = document.querySelector('.arrow.left');
-  const rightArrow = document.querySelector('.arrow.right');
-  const visibleCount = 3;
-  let currentIndex = 0;
-
-  function updateCarousel() {
-    const itemWidth = solutionItems[0].offsetWidth + 20;
-    const offset = currentIndex * itemWidth;
-
-    carousel.style.transform = `translateX(-${offset}px)`;
-
-    solutionItems.forEach((item, i) => {
-      item.classList.remove('active', 'visible');
-      item.style.backgroundColor = 'var(--cor-azul-escuro)';
-      item.style.transform = 'scale(0.95)';
-
-      if (i >= currentIndex && i < currentIndex + visibleCount) {
-        item.classList.add('visible');
-      }
-
-      if (i === currentIndex + 1) {
-        item.classList.add('active');
-        item.style.backgroundColor = 'var(--cor-ciano)';
-        item.style.transform = 'scale(1.15)';
-      }
-    });
-  }
-
-  leftArrow?.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  });
-
-  rightArrow?.addEventListener('click', () => {
-    if (currentIndex < solutionItems.length - visibleCount) {
-      currentIndex++;
-      updateCarousel();
-    }
-  });
-
-  setInterval(() => {
-    if (currentIndex >= solutionItems.length - visibleCount) {
-      currentIndex = 0;
-    } else {
-      currentIndex++;
-    }
-    updateCarousel();
-  }, 5000);
-
-  updateCarousel();
+     const carousel = document.querySelector('.solutions-carousel');
+     const solutionItems = document.querySelectorAll('.solution');
+     const leftArrow = document.querySelector('.arrow.left');
+     const rightArrow = document.querySelector('.arrow.right');
+     let currentIndex = 2; // Começa no item central (índice 2)
+     let autoRotateInterval;
+     
+     function updateCarousel() {
+       const isMobile = window.innerWidth <= 768;
+       const activeItem = solutionItems[currentIndex];
+       const itemWidth = activeItem.offsetWidth + (isMobile ? 0 : 20); // Margem apenas no desktop
+       const containerWidth = document.querySelector('.solutions-carousel-wrapper').offsetWidth;
+       
+       // Centraliza o item ativo
+       let offset;
+       if (isMobile) {
+         offset = (containerWidth / 2) - (itemWidth / 2) - (currentIndex * itemWidth);
+       } else {
+         offset = (containerWidth / 2) - (itemWidth / 2) - (currentIndex * itemWidth);
+       }
+       
+       carousel.style.transform = `translateX(${offset}px)`;
+     
+       // Atualiza classes dos itens
+       solutionItems.forEach((item, index) => {
+         item.classList.remove('active', 'prev', 'next');
+         
+         if (isMobile) {
+           // Modo mobile - apenas 1 item visível
+           if (index === currentIndex) {
+             item.classList.add('active');
+           }
+         } else {
+           // Modo desktop - 3 itens visíveis
+           if (index === currentIndex) {
+             item.classList.add('active');
+           } else if (index === currentIndex - 1 || 
+                     (currentIndex === 0 && index === solutionItems.length - 1)) {
+             item.classList.add('prev');
+           } else if (index === currentIndex + 1 || 
+                     (currentIndex === solutionItems.length - 1 && index === 0)) {
+             item.classList.add('next');
+           }
+         }
+       });
+     }
+     
+     function moveToPrev() {
+       currentIndex = (currentIndex - 1 + solutionItems.length) % solutionItems.length;
+       updateCarousel();
+       resetAutoRotate();
+     }
+     
+     function moveToNext() {
+       currentIndex = (currentIndex + 1) % solutionItems.length;
+       updateCarousel();
+       resetAutoRotate();
+     }
+     
+     function resetAutoRotate() {
+       clearInterval(autoRotateInterval);
+       autoRotateInterval = setInterval(moveToNext, 5000);
+     }
+     
+     // Event listeners
+     leftArrow.addEventListener('click', moveToPrev);
+     rightArrow.addEventListener('click', moveToNext);
+     
+     // Inicialização
+     updateCarousel();
+     autoRotateInterval = setInterval(moveToNext, 5000);
+     
+     // Redimensionamento com debounce para melhor performance
+     let resizeTimeout;
+     window.addEventListener('resize', () => {
+       clearTimeout(resizeTimeout);
+       resizeTimeout = setTimeout(() => {
+         updateCarousel();
+       }, 100);
+     });
+   
   // === Tema escuro ===
   const toggleButton = document.getElementById('toggleTheme');
   if (toggleButton) {

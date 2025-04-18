@@ -203,12 +203,14 @@ a:hover {
   min-height: 450px;
   margin-bottom: 10;
   padding-bottom: 0;
+
 }
 .slide {
   display: none;
   position: relative;
   width: 100%;
   height: 450px;
+  
 }
 .slide.active {
   display: block;
@@ -340,76 +342,170 @@ a:hover {
   color: var(--cor-azul-escuro);
   margin-bottom: 40px;
 }
+
+/* Container principal */
+.carousel_container {
+  position: relative;
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Wrapper do carrossel */
 .solutions-carousel-wrapper {
-    position: relative;
-    max-width: 960px;
-    margin: 10px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Trilha do carrossel */
+.solutions-carousel {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  padding: 50px 0;
+  will-change: transform;
+}
+
+/* Itens individuais */
+.solution {
+  overflow: hidden;
+  font-size: 44px;
+  padding: 20px;
+  flex: 0 0 calc(33.333% - 20px); /* 3 itens por vez */
+  min-width: 0;
+  padding: 20px 10px;
+  border-radius: 70px;
+  background: var(--cor-azul-escuro);
+  color: white;
+  transition: all 0.4s ease;
+  margin: 0 10px;
+  transform: scale(0.9);
+}
+
+
+/* Item ativo */
+.solution.active {
+  opacity: 1;
+  transform: scale(1.1) translateY(-10px);
+  filter: blur(0);
+  background: var(--cor-ciano);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+.solution.prev {
+  transform: scale(0.95) translateX(10%);
+}
+
+.solution.next {
+  transform: scale(0.95) translateX(-10%);
+}
+
+/* Setas de navegação */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  color: var(--cor-azul-escuro);
+  background-color: white;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+.arrow:hover {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .solution {
+    flex: 0 0 calc(50% - 15px); /* 2 itens */
+    font-size: 28px;
+    margin: 0 7px;
+  }
+}
+
+/* Versão Mobile - 1 item por vez */
+@media (max-width: 768px) {
+  .carousel_container {
+    padding: 1rem 0;
   }
   
   .solutions-carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    padding: 50px 0;
   }
   
   .solution {
-    flex: 0 0 300px;
-    height: 220px;
-    margin: 0 10px;
-    background-color: var(--cor-azul-escuro);
-    color: var(--cor-branco);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
+    flex: 0 0 80% !important; 
+    font-size: 22px !important;
+    margin: 0 auto !important; 
+    opacity: 0.5;
+    transform: scale(0.9);
     transition: all 0.4s ease;
   }
   
-  .solution.visible {
+  .solution.active {
+    margin: 0 -40px !important; 
+    flex: 0 0 100% !important;
     opacity: 1;
-    pointer-events: auto;
+    transform: scale(1.1) !important;
+    z-index: 2;
+  }
+  
+  .solution.prev,
+  .solution.next {
+    display: none; /* esconde os outros itens */
+  }
+  
+  .arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    background: rgba(255,255,255,0.8);
+  }
+  
+  .arrow.left { left: 5px; }
+  .arrow.right { right: 5px; }
+
+  .slide.active .text{
+    left: 0;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .solution {
+    flex: 0 0 90% !important;
+    font-size: 20px !important;
+    padding: 12px 8px;
+    border-radius: 30px;
   }
   
   .solution.active {
-    background-color: var(--cor-ciano);
-    transform: scale(1.05);
-    border-radius: 8px !important; /* precisei forçar pq ele n estava querendo arrendondar as pontas */
-    overflow: hidden;
+    flex: 0 0 95% !important;
   }
-  
-  .solutions .btn.dark {
-    margin-top: 40px;
-  }
-  
   
   .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 36px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--cor-azul-escuro);
-    z-index: 10;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
   }
-  
-  .arrow.left {
-    left: -40px;
-  }
-  
-  .arrow.right {
-    right: -40px;
-  }
-
+}
 
 .footer_logo a img{
   height: 200px;

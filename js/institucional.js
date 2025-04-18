@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Página carregada e script.js ativo (institucional)');
+  console.log('Página com collapsible carregada');
 
   // === Tradução ===
   function setLanguage(lang) {
@@ -10,89 +10,110 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.setLanguage = setLanguage;
 
+  // Aplica o idioma salvo ao carregar a página
+  const savedLang = localStorage.getItem('lang') || 'pt';
+  setLanguage(savedLang);
+
+
   // === Novo Carrossel da seção "valores" (formato solutions-carousel) ===
   const carousel = document.querySelector('.solutions-carousel');
   const solutionItems = document.querySelectorAll('.solution');
   const leftArrow = document.querySelector('.arrow.left');
   const rightArrow = document.querySelector('.arrow.right');
-  const visibleCount = 3;
-  let currentIndex = 0;
-
+  let currentIndex = 1; // Começa no item central
+  
   function updateCarousel() {
-    const itemWidth = solutionItems[0].offsetWidth + 20;
-    const offset = currentIndex * itemWidth;
-
-    carousel.style.transform = `translateX(-${offset}px)`;
-
-    solutionItems.forEach((item, i) => {
-      item.classList.remove('active', 'visible');
-      item.style.backgroundColor = 'var(--cor-azul-escuro)';
-      item.style.transform = 'scale(0.95)';
-
-      if (i >= currentIndex && i < currentIndex + visibleCount) {
-        item.classList.add('visible');
-      }
-
-      if (i === currentIndex + 1) {
+    const activeItem = solutionItems[currentIndex];
+    const itemWidth = activeItem.offsetWidth + 20; // Margens incluídas
+    const containerWidth = document.querySelector('.carousel_container').offsetWidth;
+    
+    // Cálculo preciso do offset
+    const offset = (containerWidth/2) - (itemWidth/2) - (currentIndex * itemWidth);
+    
+    carousel.style.transform = `translateX(${offset}px)`;
+  }
+  
+  function updateClasses() {
+    solutionItems.forEach((item, index) => {
+      item.classList.remove('active', 'prev', 'next');
+      
+      if(index === currentIndex) {
         item.classList.add('active');
-        item.style.backgroundColor = 'var(--cor-ciano)';
-        item.style.transform = 'scale(1.15)';
+      } else if(index === (currentIndex - 1 + solutionItems.length) % solutionItems.length) {
+        item.classList.add('prev');
+      } else if(index === (currentIndex + 1) % solutionItems.length) {
+        item.classList.add('next');
       }
     });
   }
+  
+  leftArrow.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + solutionItems.length) % solutionItems.length;
+    updateCarousel();
+    updateClasses();
+  });
+  
+  rightArrow.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % solutionItems.length;
+    updateCarousel();
+    updateClasses();
+  });
+  
 
-  leftArrow?.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
+  // Inicialização
+  updateCarousel();
+  updateClasses();
+  setInterval(updateCarousel, 1000);
+  setInterval(updateClasses, 1000);
+ 
+  
+  // Redimensionamento da janela
+  window.addEventListener('resize', () => {
+    updateCarousel();
+    updateClasses();
   });
 
-  rightArrow?.addEventListener('click', () => {
-    if (currentIndex < solutionItems.length - visibleCount) {
-      currentIndex++;
-      updateCarousel();
-    }
-  });
+
+
+
+
+// Configurações do carrossel
+const leftCard = document.getElementById('card-left');
+const centerCard = document.getElementById('card-center');
+const rightCard = document.getElementById('card-right');
+
+let contents = [
+  'Inspeções qualificadas N1 e N2',
+  'Normas ABNT',
+  'Qualidade de serviço'
+];
+
+const cards = [leftCard, centerCard, rightCard];
 
   setInterval(() => {
-    if (currentIndex >= solutionItems.length - visibleCount) {
-      currentIndex = 0;
-    } else {
-      currentIndex++;
-    }
-    updateCarousel();
-  }, 5000);
+    // Aplica fade-out
+    cards.forEach(card => card.classList.add('fade-out'));
 
-  updateCarousel();
-  
-  // === Aplicar idioma salvo ===
-  const savedLang = localStorage.getItem('lang') || 'pt';
-  setLanguage(savedLang);
+    setTimeout(() => {
+      // Rotaciona os textos
+      contents.unshift(contents.pop());
 
-  // === Carrossel da seção "certificados" ===
-  const slides = document.querySelectorAll('.slide');
-  let currentSlideIndex = 0;
+      // Atualiza os conteúdos
+      leftCard.textContent = contents[0];
+      centerCard.textContent = contents[1];
+      rightCard.textContent = contents[2];
 
-  function updateSlides() {
-    slides.forEach((slide, index) => {
-      slide.classList.remove('active', 'prev', 'next');
+      // Aplica fade-in
+      cards.forEach(card => {
+        card.classList.remove('fade-out');
+        card.classList.add('fade-in');
+      });
 
-      if (index === currentSlideIndex) {
-        slide.classList.add('active');
-      } else if (index === (currentSlideIndex - 1 + slides.length) % slides.length) {
-        slide.classList.add('prev');
-      } else if (index === (currentSlideIndex + 1) % slides.length) {
-        slide.classList.add('next');
-      }
-    });
-  }
+      // Remove classe fade-in após animação pra resetar
+      setTimeout(() => {
+        cards.forEach(card => card.classList.remove('fade-in'));
+      }, 400);
 
-  function showNextSlide() {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    updateSlides();
-  }
-
-  updateSlides();
-  setInterval(showNextSlide, 7000); // a cada 7s
+    }, 400); // Espera o fade-out antes de trocar texto
+  }, 3000);
 });
