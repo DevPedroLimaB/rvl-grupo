@@ -366,7 +366,7 @@ nav::after {
   
   .solutions-carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform  0.5s ease-in-out;
   }
   
   .solution {
@@ -694,107 +694,45 @@ nav::after {
 
 
 
-/* Responsivo */
-
-
-/* tablets*/
-@media(min-width : 480px){
-  
-  .about .text {
-    flex: 1;
-    color: var(--cor-branco);
-    letter-spacing: 0.025cm;
-    text-align: left;
-    margin-right: 30%;
-}
-}
-
-
-/* desktops menores*/
-@media(min-width : 768px){
-  .about .text {
-    flex: 1;
-    color: var(--cor-branco);
-    letter-spacing: 0.025cm;
-    text-align: left;
-    margin-right: 45%;
-}
-
-}
-
-/* telas grandes*/
-@media (min-width : 1024px){
-  .about .text{
-    flex: 1;
-    color: var(--cor-branco);
-    letter-spacing: 0.025cm;
-    text-align: left;
-    margin-right: 55%;
-}
-}
-
-
-@media (max-width: 1024px) {
-    .institucional-banner h1 {
-        font-size: 2.8rem;
-    }
-    
-    .institucional-banner p {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        padding: 15px 20px;
-        gap: 15px;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    
+    .about,
+    .slide.active {
+      flex-direction: column;
+      text-align: center;
+    }
+    .about img,
+    .slide img,
+    .about .text,
+    .slide .text {
+      width: 100%;
+    }
     .nav-links {
-        gap: 20px;
+      flex-direction: column;
+      gap: 10px;
     }
-    
-    .institucional-banner h1 {
-        font-size: 2.2rem;
+    .solution {
+      flex: 0 0 100%;
     }
-    
-    .institucional-banner p {
-        font-size: 1rem;
-    }
-    
-    .valores-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .parceiros-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-    
-    .institucional-banner h1 {
-        font-size: 1.8rem;
-    }
-}
-@media (max-width: 600px) {
-  .solution {
-    flex: 0 0 240px;
-    height: 180px;
-    font-size: 1rem;
   }
-
-  .solutions-carousel-wrapper {
-    padding: 0 40px;
+  /* Responsivo para telas menores */
+  @media (max-width: 600px) {
+    .solution {
+      flex: 0 0 240px;
+      height: 180px;
+      font-size: 1rem;
+    }
+  
+    .solutions-carousel-wrapper {
+      padding: 0 40px;
+    }
+  
+    .arrow {
+      font-size: 28px;
+    }
   }
-
-  .arrow {
-    font-size: 28px;
-  }
-}
+  
+  /* Responsivo para telas menores */

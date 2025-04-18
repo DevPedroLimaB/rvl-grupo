@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex++;
     }
     updateCarousel();
-  }, 7000);
+  }, 5000);
 
   updateCarousel();
-
+  
   // === Aplicar idioma salvo ===
   const savedLang = localStorage.getItem('lang') || 'pt';
   setLanguage(savedLang);

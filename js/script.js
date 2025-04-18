@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex++;
     }
     updateCarousel();
-  }, 7000);
+  }, 5000);
 
   updateCarousel();
   // === Tema escuro ===
